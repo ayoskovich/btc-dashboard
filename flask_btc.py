@@ -4,6 +4,7 @@ import requests
 import json
 import pandas as pd
 
+
 app = Flask(__name__)
 
 
@@ -15,6 +16,11 @@ def last_price():
     price = float(last_line.split(',')[0])
 
   return price
+
+
+@app.route('/')
+def hello():
+  return jsonify({'message':'hello'})
 
 
 @app.route('/shout/<tar>')
