@@ -6,8 +6,9 @@ import pandas as pd
 
 app = Flask(__name__)
 
+
 def last_price():
-  ''' Gets the latest price '''
+  """ Get the latest price """
 
   with open('../prices.txt', 'r') as f:
     last_line = f.readlines()[-1]
@@ -17,19 +18,12 @@ def last_price():
 
 
 @app.route('/shout/<tar>')
-def yell(tar):
+@app.route('/shout/')
+def yell(tar=None):
   """ Yell if price moves above tar """
-  price = str(last_price())
-
   load = {
-    'last_price': price,
-    'message':    price > tar
+    'tar': tar
   }
 
   return jsonify(load)
 
-
-@app.route('/view')
-def show():
-  df = pd.read_csv('../prices.txt', names=['price', 'time'])
-  return df.to_html()
