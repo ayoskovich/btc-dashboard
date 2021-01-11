@@ -8,14 +8,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-TRADES = [
-    (31747.53, 0.00157499),
-    (31452.98, 0.00158981)
-]
-buys = [x[0] for x in TRADES]
-amts = [x[1] for x in TRADES]
-
-
 def last_price():
   ''' Gets the latest price '''
 
@@ -25,27 +17,6 @@ def last_price():
 
   return price
 
-
-@app.route('/gainz')
-def get_gainz():
-
-  price = last_price()
-
-  try:
-    gainz = np.sum(
-        np.array(amts)*(price - np.array(buys))
-    )
-    gainz = format(gainz, '.2f')
-
-    load = {
-      'current_price': price,
-      'gainz': gainz
-    }
-
-    return jsonify(load)
-
-  except KeyError:
-    return jsonify({'error': 'Something went wrong...'})
 
 
 @app.route('/shout/<tar>')
