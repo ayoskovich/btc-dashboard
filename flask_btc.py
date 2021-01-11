@@ -2,9 +2,7 @@ from flask import Flask
 from flask import jsonify
 import requests
 import json
-import numpy as np
 import pandas as pd
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -29,6 +27,7 @@ def yell(tar):
   }
 
   return jsonify(load)
+
 
 @app.route('/view')
 def show():
