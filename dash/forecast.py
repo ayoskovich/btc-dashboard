@@ -7,10 +7,14 @@ class Future():
     self.data = data
 
 
-  def forecast(self, how, amt):
+  def sma(self, amt):
     """ Forecast by using the how method 
     SMA, others...
     """
+    pass
+
+ 
+  def ema(self, amt):
     pass
 
 
