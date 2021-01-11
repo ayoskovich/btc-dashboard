@@ -18,7 +18,6 @@ def last_price():
   return price
 
 
-
 @app.route('/shout/<tar>')
 def yell(tar):
   """ Yell if price moves above tar """
@@ -29,13 +28,7 @@ def yell(tar):
     'message':    price > tar
   }
 
-  # <meta http-equiv="refresh" content="5">
-  return f"""
-  Current price: {price} 
-  <audio controls>
-    <source src="up.mp3" type="audio/mpeg">
-  </audio>
-  """
+  return jsonify(load)
 
 @app.route('/view')
 def show():
