@@ -4,18 +4,9 @@ import requests
 import json
 import pandas as pd
 
+from dash.forecast import Dataset, Future
 
 app = Flask(__name__)
-
-
-def last_price():
-  """ Get the latest price """
-
-  with open('../prices.txt', 'r') as f:
-    last_line = f.readlines()[-1]
-    price = float(last_line.split(',')[0])
-
-  return price
 
 
 @app.route('/')
@@ -23,11 +14,13 @@ def hello():
   return jsonify({'message':'hello'})
 
 
-@app.route('/sma/<dur>')
-def sma(dur):
+@app.route('/data/<amt>')
+def sma(amt):
   """ Simple moving average of length dur """
-  pass
+  A = Dataset(int(amt), '../prices.txt', 'Short history')
+  f1 = Future(3, A)
 
+  return f1.data.to_html()
 
 @app.route('/shout/<tar>')
 @app.route('/shout/')
