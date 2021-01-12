@@ -23,6 +23,12 @@ def hello():
   return jsonify({'message':'hello'})
 
 
+@app.route('/sma/<dur>')
+def sma(dur):
+  """ Simple moving average of length dur """
+  pass
+
+
 @app.route('/shout/<tar>')
 @app.route('/shout/')
 def yell(tar=None):
